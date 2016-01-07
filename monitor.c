@@ -1022,6 +1022,7 @@ void qmp_client_migrate_info(const char *protocol, const char *hostname,
             error_setg(errp, QERR_MISSING_PARAMETER, "port/tls-port");
             return;
         }
+	//printf("spice_server_migrate_connect: %s %d %d %s\n",hostname,port,tls_port,cert_subject);
 
         if (qemu_spice_migrate_info(hostname,
                                     has_port ? port : -1,

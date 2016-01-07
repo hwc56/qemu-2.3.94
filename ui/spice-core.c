@@ -550,6 +550,7 @@ SpiceInfo *qmp_query_spice(Error **errp)
     /* for compatibility with the original command */
     info->has_channels = true;
     info->channels = qmp_query_spice_channels();
+	printf("###############################qmp_query_spice %d %d\n",port,tls_port);
 
     return info;
 }
@@ -572,7 +573,7 @@ static void migration_state_notifier(Notifier *notifier, void *data)
         spice_have_target_host = false;
     }
 }
-
+/*********spiceserver migrate connect ********/
 int qemu_spice_migrate_info(const char *hostname, int port, int tls_port,
                             const char *subject)
 {
@@ -580,6 +581,7 @@ int qemu_spice_migrate_info(const char *hostname, int port, int tls_port,
 
     ret = spice_server_migrate_connect(spice_server, hostname,
                                        port, tls_port, subject);
+	printf("###############################spice_server_migrate_connect:%s %d %d %s\n",hostname,port,tls_port,subject);
     spice_have_target_host = true;
     return ret;
 }
